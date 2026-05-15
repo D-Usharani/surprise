@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bestie Birthday | June 16th Celebration</title>
+    <!-- Google Fonts + Smooth Font Icons (Font Awesome) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fdf8f0 0%, #fef3e4 100%);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1e3d3;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f7b05e;
+            border-radius: 10px;
+        }
+
+        /* main container */
+        .wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 30px 24px 80px;
+            position: relative;
+        }
+
+        /* floating confetti / balloon effect */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* header hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: #ffd966cc;
+            backdrop-filter: blur(8px);
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #b45f1b;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: #d45a2b;
+            text-shadow: 4px 4px 12px rgba(211, 84, 0, 0.15);
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero-tagline {
+            font-size: 1.35rem;
+            color: #7f5539;
+            max-width: 650px;
+            margin: 0 auto;
+            font-weight: 500;
+            background: rgba(255,241,220,0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 80px;
+            padding: 8px 24px;
+            width: fit-content;
+        }
+
+        /* card + image gallery section */
+        .wish-card {
+            background: #ffffffcc;
+            backdrop-filter: blur(2px);
+            border-radius: 56px;
+            padding: 30px 28px;
+            margin-bottom: 60px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,215,160,0.9);
+            transition: transform 0.2s ease;
+        }
+
+        .main-message {
+            font-size: 1.45rem;
+            line-height: 1.5;
+            color: #2d2b26;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .highlight-name {
+            font-weight: 800;
+            color: #e67e22;
+            background: #fff0e0;
+            padding: 2px 12px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        /* image grid dynamic */
+        .image-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin: 40px 0 30px;
+        }
+
+        .img-card {
+            background: white;
+            border-radius: 36px;
+            overflow: hidden;
+            width: 200px;
+            transition: all 0.35s ease;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .img-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 40px -12px rgba(0,0,0,0.25);
+        }
+
+        .img-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .img-caption {
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            background: #fef4e8;
+            color: #b64926;
+            font-size: 0.85rem;
+        }
+
+        /* text bubble personal */
+        .bff-quote {
+            background: #ffedd5;
+            padding: 24px 32px;
+            border-radius: 48px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-top: 30px;
+            border-left: 8px solid #f39c12;
+        }
+
+        /* countdown section */
+        .countdown-box {
+            background: #ffe3c2;
+            border-radius: 40px;
+            padding: 25px 20px;
+            text-align: center;
+            margin: 40px 0 50px;
+            transition: all 0.2s;
+        }
+
+        .countdown-title {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: #c25d2b;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+            margin: 25px 0 5px;
+        }
+
+        .timer-block {
+            background: white;
+            padding: 16px 12px;
+            border-radius: 60px;
+            min-width: 90px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .timer-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #d35400;
+            line-height: 1;
+        }
+
+        .timer-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #8b5a2b;
+        }
+
+        /* wish button + interactive */
+        .surprise-btn {
+            background: linear-gradient(105deg, #ffb347, #ff8c1a);
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 25px;
+            box-shadow: 0 10px 20px rgba(230,126,34,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.02);
+            background: linear-gradient(105deg, #ffa133, #f97316);
+            box-shadow: 0 18px 28px rgba(230,126,34,0.4);
+        }
+
+        /* confetti canvas (hidden by default but will pop) */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* music toggle / subtle style */
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #ffffffdd;
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 12px 18px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            border: 1px solid #ffd58c;
+            color: #c95a1a;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .music-control i {
+            margin-right: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #b97f51;
+            font-weight: 500;
+        }
+
+        /* responsiveness */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 2.7rem;
+            }
+            .timer-block {
+                min-width: 70px;
+            }
+            .timer-number {
+                font-size: 1.8rem;
+            }
+            .image-showcase {
+                gap: 16px;
+            }
+            .img-card {
+                width: 150px;
+            }
+            .img-card img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="floating-bg" id="floatingElements"></div>
+<canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1000;"></canvas>
+
+<div class="wrapper">
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="date-badge">
+            <i class="fas fa-gift"></i> 16th JUNE · SPECIAL DAY
+        </div>
+        <h1>HAPPY BIRTHDAY <span>BOY BESTIE</span> 🎂🔥</h1>
+        <div class="hero-tagline">
+            <i class="fas fa-crown"></i> Legendary Vibes Only <i class="fas fa-crown"></i>
+        </div>
+    </div>
+
+    <!-- Main Wish Card with Image Gallery -->
+    <div class="wish-card">
+        <div class="main-message">
+            To my absolute rockstar <span class="highlight-name" id="bestieNameDisplay">Bestie</span> 🎉<br>
+            You're not just a friend—you're family I chose. Cheers to your glow & greatness!
+        </div>
+
+        <!-- IMAGE GALLERY : stunning birthday themed images + best friend moments vibe -->
+        <div class="image-showcase">
+            <div class="img-card">
+                <img src="https://picsum.photos/id/26/400/400" alt="Vibes with bestie" loading="lazy">
+                <div class="img-caption"><i class="fas fa-music"></i> Wild nights</div>
+            </div>
+            <div class="img-card">
+                <img src="https://picsum.photos/id/155/400/400" alt="Brothers in arms" loading="lazy">
+                <div class="img-caption"><i class="fas fa-laugh-squint"></i> Endless laughs</div>
+            </div>
+            <div class="img-card">
+                <img src="https://picsum.photos/id/169/400/400" alt="Sunset memories" loading="lazy">
+                <div class="img-caption"><i class="fas fa-sun"></i> Golden days</div>
+            </div>
+            <div class="img-card">
+                <img src="https://picsum.photos/id/20/400/400" alt="Party mood" loading="lazy">
+                <div class="img-caption"><i class="fas fa-champagne-glasses"></i> Celebration mode</div>
+            </div>
+        </div>
+        
+        <div class="bff-quote">
+            <i class="fas fa-quote-left" style="color:#e67e22; margin-right: 8px;"></i> 
+            Some bonds are unbreakable — ours is pure fire. May this year bring you insane success, mad adventures, and everything you manifest. <strong>#June16thKing</strong>
+            <i class="fas fa-quote-right" style="color:#e67e22; margin-left: 8px;"></i>
+        </div>
+    </div>
+
+    <!-- Countdown to next birthday or celebration (Since his birthday was 16th June, we show days passed / upcoming? actually we show days until next June 16, or just fun countdown timer to next year) -->
+    <div class="countdown-box">
+        <div class="countdown-title">
+            <i class="fas fa-hourglass-half"></i> NEXT BIRTHDAY COUNTDOWN 
+        </div>
+        <div class="timer" id="countdownTimer">
+            <div class="timer-block"><div class="timer-number" id="days">00</div><div class="timer-label">Days</div></div>
+            <div class="timer-block"><div class="timer-number" id="hours">00</div><div class="timer-label">Hours</div></div>
+            <div class="timer-block"><div class="timer-number" id="minutes">00</div><div class="timer-label">Mins</div></div>
+            <div class="timer-block"><div class="timer-number" id="seconds">00</div><div class="timer-label">Secs</div></div>
+        </div>
+        <div style="margin-top: 12px; font-size: 0.9rem;"><i class="fas fa-calendar-alt"></i> Till the next epic 16th June — your year of greatness 🔥</div>
+    </div>
+
+    <!-- secret Surprise + Confetti Button -->
+    <div style="text-align: center;">
+        <button class="surprise-btn" id="blastBtn"><i class="fas fa-star"></i> Drop a SURPRISE WISH <i class="fas fa-grin-stars"></i></button>
+        <p style="margin-top: 16px; font-size: 0.85rem; color:#b95f2a;"><i class="fas fa-heart"></i> Click for confetti & birthday magic!</p>
+    </div>
+    <footer>
+        Made with 💛 for my boy bestie · 16th June forever legendary
+    </footer>
+</div>
+
+<!-- music toggle (optional ambient audio) but we add actual generated bg audio note? it will work with user interaction, better to use web audio context? but simple bg melody? Instead we add a silent birthday jingle? i'll implement birthday cheer sound effect on click, but we also create a dynamic playlist? to keep it clean and not violate autoplay, we'll add a fun click "cheer" sound effect from HTML5 Audio? Actually use web audio? Let's use a simple 'applause' via base64 or use Web Audio API? simpler: using Audio from hidden file? no server needed? I'll integrate a tiny "whoop" from byte array? to avoid external files, just use confetti canvas animation + 'Happy Birthday' text floating. No audio autoplay needed. JS confetti + floating message win) -->
+<script>
+    // -------------------------------
+    // 1. Countdown to next June 16th
+    // -------------------------------
+    function getNextBirthday(yearBase) {
+        const today = new Date();
+        let currentYear = today.getFullYear();
+        let birthdayThisYear = new Date(currentYear, 5, 16); // June is month 5 (0-index)
+        if (today > birthdayThisYear) {
+            // birthday already passed this year, next year's June 16
+            return new Date(currentYear + 1, 5, 16);
+        } else {
+            return birthdayThisYear;
+        }
+    }
+
+    function updateCountdown() {
+        const now = new Date();
+        const nextBirthday = getNextBirthday();
+        const diff = nextBirthday - now;
+        if(diff <= 0) {
+            // if exactly birthday day, show 0 and congratulations text
+            document.getElementById('days').innerText = '0';
+            document.getElementById('hours').innerText = '0';
+            document.getElementById('minutes').innerText = '0';
+            document.getElementById('seconds').innerText = '0';
+            // maybe show a special message in countdown?
+            const timerDiv = document.querySelector('.countdown-title');
+            if(timerDiv && !timerDiv.innerHTML.includes("TODAY")) {
+                timerDiv.innerHTML = "<i class='fas fa-birthday-cake'></i> IT'S HIS BIRTHDAY WEEK! CELEBRATE! 🎂🎉";
+            }
+            return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / (3600000));
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours < 10 ? '0'+hours : hours;
+        document.getElementById('minutes').innerText = minutes < 10 ? '0'+minutes : minutes;
+        document.getElementById('seconds').innerText = seconds < 10 ? '0'+seconds : seconds;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // -------------------------------
+    // 2. CONFETTI CANVAS (powerful celebration)
+    // -------------------------------
+    const canvas = document.getElementById('confetti-canvas');
+    let ctx = canvas.getContext('2d');
+    let animationId = null;
+    let particles = [];
+    let runningConfetti = false;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    class ConfettiParticle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height - canvas.height;
+            this.size = Math.random() * 8 + 4;
+            this.speedY = Math.random() * 5 + 4;
+            this.speedX = Math.random() * 2 - 1;
+            this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+            this.rotation = Math.random() * 360;
+            this.rotSpeed = (Math.random() - 0.5) * 8;
+        }
+        update() {
+            this.y += this.speedY;
+            this.x += this.speedX;
+            this.rotation += this.rotSpeed;
+            if (this.y > canvas.height + 50 || this.x < -50 || this.x > canvas.width + 50) {
+                return false;
+            }
+            return true;
+        }
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
+            ctx.fillStyle = this.color;
+            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+            ctx.restore();
+        }
+    }
+
+    function startConfetti(duration = 2800) {
+        if(runningConfetti) return;
+        runningConfetti = true;
+        resizeCanvas();
+        particles = [];
+        const particleCount = 220;
+        for(let i=0; i<particleCount; i++) {
+            particles.push(new ConfettiParticle());
+        }
+        function animate() {
+            if(!runningConfetti) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let allAlive = false;
+            for(let i=0; i<particles.length; i++) {
+                const alive = particles[i].update();
+                particles[i].draw();
+                if(alive) allAlive = true;
+            }
+            if(!allAlive && particles.length > 0) {
+                runningConfetti = false;
+                cancelAnimationFrame(animationId);
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                return;
+            }
+            animationId = requestAnimationFrame(animate);
+        }
+        animate();
+        setTimeout(() => {
+            if(runningConfetti) {
+                runningConfetti = false;
+                cancelAnimationFrame(animationId);
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+            }
+        }, duration);
+    }
+
+    // Also add floating balloons / confetti on button click + extra text popup
+    const blastBtn = document.getElementById('blastBtn');
+    blastBtn.addEventListener('click', (e) => {
+        startConfetti(3200);
+        // extra floating text birthday wish
+        showFloatingMessage();
+        // also trigger HBD phrase
+        const surpriseSound = new Audio("data:audio/wav;base64,U3RlYWx0aCBub3RpZnkgLSB0aGlzIGlzIGEgZmFrZSBhdWRpbyB0byBhdm9pZCBleHRlcm5hbDoNCg0KbG9s"); // silent placeholder no error, but we use existing web audio only for visual, no external.
+        // But just to be fancy I add a simple beep? no. Perfect.
+        // Also change background flash temporary
+        document.body.style.transition = "background 0.2s";
+        document.body.style.background = "linear-gradient(145deg, #fff3e2, #ffe1b9)";
+        setTimeout(() => {
+            document.body.style.background = "linear-gradient(145deg, #fdf8f0 0%, #fef3e4 100%)";
+        }, 500);
+        alert("🎉✨ HAPPY BIRTHDAY MY BOY BESTIE! 🎂🕶️ You're the definition of legendary. Have the best year ahead! ✨🎉");
+    });
+
+    // floating message (glitter text)
+    function showFloatingMessage() {
+        const msgDiv = document.createElement('div');
+        msgDiv.innerText = "🎈 HAPPY BIRTHDAY KING! 🎈";
+        msgDiv.style.position = 'fixed';
+        msgDiv.style.bottom = '40%';
+        msgDiv.style.left = '50%';
+        msgDiv.style.transform = 'translateX(-50%)';
+        msgDiv.style.backgroundColor = '#ffebb5';
+        msgDiv.style.color = '#d95b1c';
+        msgDiv.style.padding = '14px 28px';
+        msgDiv.style.borderRadius = '60px';
+        msgDiv.style.fontWeight = 'bold';
+        msgDiv.style.fontSize = '1.8rem';
+        msgDiv.style.fontFamily = "'Playfair Display', serif";
+        msgDiv.style.boxShadow = '0 12px 28px rgba(0,0,0,0.2)';
+        msgDiv.style.zIndex = '2000';
+        msgDiv.style.border = '2px solid #ffb347';
+        msgDiv.style.backdropFilter = 'blur(12px)';
+        msgDiv.style.whiteSpace = 'nowrap';
+        msgDiv.style.pointerEvents = 'none';
+        document.body.appendChild(msgDiv);
+        setTimeout(() => {
+            msgDiv.style.transition = 'all 0.7s ease';
+            msgDiv.style.opacity = '0';
+            msgDiv.style.transform = 'translateX(-50%) translateY(-40px)';
+            setTimeout(() => msgDiv.remove(), 800);
+        }, 2000);
+    }
+
+    // Floating dynamic shapes (floating background elements)
+    function createFloatingShapes() {
+        const container = document.getElementById('floatingElements');
+        if(!container) return;
+        const shapes = ['🎈', '🎂', '🎁', '✨', '⭐', '🎉', '🍻', '🔥'];
+        for(let i=0; i<42; i++) {
+            const span = document.createElement('span');
+            span.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+            span.style.position = 'absolute';
+            span.style.fontSize = (Math.random() * 24 + 14) + 'px';
+            span.style.left = Math.random() * 100 + '%';
+            span.style.top = Math.random() * 100 + '%';
+            span.style.opacity = Math.random() * 0.4 + 0.2;
+            span.style.animation = `floatAnim ${Math.random() * 15 + 10}s infinite linear`;
+            span.style.pointerEvents = 'none';
+            span.style.zIndex = '0';
+            container.appendChild(span);
+        }
+    }
+    // add animation keyframes dynamically
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+        @keyframes floatAnim {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-35px) rotate(10deg); opacity: 0.6; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+    createFloatingShapes();
+
+    // customize bestie name dynamically (just a fun touch)
+    const bestieSpan = document.getElementById('bestieNameDisplay');
+    const nameOptions = ['Bro', 'Legend', 'My Brother', 'Champ', 'Partner-in-crime'];
+    let idx = 0;
+    setInterval(() => {
+        if(bestieSpan) {
+            bestieSpan.style.transition = 'all 0.2s';
+            bestieSpan.style.opacity = '0.7';
+            setTimeout(() => {
+                bestieSpan.innerText = nameOptions[idx % nameOptions.length];
+                bestieSpan.style.opacity = '1';
+            }, 100);
+            idx++;
+        }
+    }, 2300);
+    
+    // Subtle music player note? Not needed but i'll add a fake music note hint, but not actual audio to keep clean
+    // optional manual birthday song note: We add a 'play birthday jingle' interaction on page click? but autoplay restrictions avoided.
+    // add floating gift effect on first load using confetti once welcoming? Let's add a mini confetti burst on page load to surprise.
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            startConfetti(1800);
+            // small floating message after 1 sec
+            const welcomeMsg = document.createElement('div');
+            welcomeMsg.innerText = "🎂 16th JUNE CELEBRATIONS 🎂";
+            welcomeMsg.style.position = 'fixed';
+            welcomeMsg.style.top = '20px';
+            welcomeMsg.style.left = '20px';
+            welcomeMsg.style.backgroundColor = '#f8d9a3';
+            welcomeMsg.style.padding = '8px 16px';
+            welcomeMsg.style.borderRadius = '40px';
+            welcomeMsg.style.fontWeight = 'bold';
+            welcomeMsg.style.fontSize = '0.9rem';
+            welcomeMsg.style.zIndex = '100';
+            welcomeMsg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            document.body.appendChild(welcomeMsg);
+            setTimeout(() => welcomeMsg.remove(), 3000);
+        }, 300);
+    });
+    
+    // additional grace: manual cursor particles optional? but not needed.
+    // ensure images are showing great and memorable
+    // replace random picsum with some nice themes: already set consistent images with cool birthday mood.
+    // BUT for better presentation, I allow image alt tags remain: they show nice placeholder high-res unsplash style.
+
+    // also provide tooltip for surprise
+    console.log("Full birthday website ready for boy bestie! June 16th forever!")
+</script>
+
+<!-- Add small note for copyright but we keep emotion -->
+</body>
+</html>
